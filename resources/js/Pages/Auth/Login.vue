@@ -24,7 +24,7 @@
                         <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">{{ form.errors.email }}</p>
                     </div>
 
-                    <div class="mb-6">
+                    <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">PIN</label>
                         <input
                             v-model="form.pin"
@@ -33,6 +33,12 @@
                             class="w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition tracking-[0.5em] text-center text-lg"
                             placeholder="****"
                         />
+                    </div>
+
+                    <div class="flex items-center mb-6">
+                        <input v-model="form.remember" type="checkbox" id="remember"
+                            class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500" />
+                        <label for="remember" class="ml-2 text-sm text-gray-600">Remember me</label>
                     </div>
 
                     <button
@@ -60,9 +66,13 @@ import { useForm } from '@inertiajs/vue3';
 const form = useForm({
     email: '',
     pin: '',
+    remember: false,
 });
 
 const submit = () => {
-    form.post('/login');
+    form.transform(data => ({
+        ...data,
+        remember: data.remember ? 'on' : '',
+    })).post('/login');
 };
 </script>

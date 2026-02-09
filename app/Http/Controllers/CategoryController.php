@@ -27,7 +27,11 @@ class CategoryController extends Controller
     {
         $validated = $request->validate(['name' => 'required|string|max:255']);
         $validated['store_id'] = $request->user()->store_id;
-        Category::create($validated);
+        $category = Category::create($validated);
+
+        if ($request->header('X-Inline-Create')) {
+            return response()->json($category);
+        }
 
         return redirect()->route('categories.index')->with('success', 'Category created.');
     }

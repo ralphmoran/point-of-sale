@@ -17,13 +17,13 @@
             </a>
         </div>
 
-        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="bg-white border border-gray-200 rounded-xl overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
                     <tr class="border-b border-gray-200 bg-gray-50">
                         <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Product</th>
-                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">SKU</th>
-                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Category</th>
+                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">SKU</th>
+                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">Category</th>
                         <th class="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Price</th>
                         <th class="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Stock</th>
                         <th class="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Actions</th>
@@ -32,8 +32,8 @@
                 <tbody>
                     <tr v-for="product in products.data" :key="product.id" class="border-b border-gray-100 last:border-0 hover:bg-gray-50">
                         <td class="py-3 px-4 font-medium text-gray-900">{{ product.name }}</td>
-                        <td class="py-3 px-4 text-gray-500">{{ product.sku }}</td>
-                        <td class="py-3 px-4 text-gray-500">{{ product.category?.name }}</td>
+                        <td class="py-3 px-4 text-gray-500 hidden sm:table-cell">{{ product.sku }}</td>
+                        <td class="py-3 px-4 text-gray-500 hidden sm:table-cell">{{ product.category?.name }}</td>
                         <td class="py-3 px-4 text-right text-gray-900">${{ product.price }}</td>
                         <td class="py-3 px-4 text-right">
                             <span :class="product.stock < 10 ? 'text-red-600 font-medium' : 'text-gray-500'">{{ product.stock }}</span>

@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     // POS Terminal
     Route::get('/pos', [PosController::class, 'index'])->name('pos');
     Route::post('/pos/checkout', [PosController::class, 'checkout'])->name('pos.checkout');
+    Route::post('/switch-store', [PosController::class, 'switchStore'])->name('switch-store')->middleware('can:admin');
 
     // Products
     Route::resource('products', ProductController::class);

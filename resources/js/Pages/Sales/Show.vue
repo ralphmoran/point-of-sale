@@ -5,7 +5,7 @@
         <div class="max-w-3xl">
             <a href="/sales" class="text-sm text-primary-600 hover:text-primary-800 mb-4 inline-block">&larr; Back to Sales</a>
 
-            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+            <div class="bg-white border border-gray-200 rounded-xl overflow-x-auto">
                 <!-- Header -->
                 <div class="p-6 border-b border-gray-200">
                     <div class="flex items-center justify-between">
@@ -17,7 +17,12 @@
                             {{ sale.payment_method }}
                         </span>
                     </div>
-                    <p class="text-sm text-gray-500 mt-2">Cashier: <span class="font-medium text-gray-700">{{ sale.user?.name }}</span></p>
+                    <div class="flex flex-wrap gap-x-6 gap-y-1 mt-3 text-sm text-gray-500">
+                        <p>Cashier: <span class="font-medium text-gray-700">{{ sale.user?.name }}</span></p>
+                        <p v-if="sale.order_type">Order: <span class="font-medium text-gray-700">{{ formatOrderType(sale.order_type) }}</span></p>
+                        <p v-if="sale.customer_name">Customer: <span class="font-medium text-gray-700">{{ sale.customer_name }}</span></p>
+                        <p v-if="sale.table_number">Table: <span class="font-medium text-gray-700">{{ sale.table_number }}</span></p>
+                    </div>
                 </div>
 
                 <!-- Items -->
@@ -59,4 +64,9 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 defineProps({ sale: Object });
 
 const formatDate = (d) => new Date(d).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+const formatOrderType = (type) => {
+    const map = { dine_in: 'Dine-in', takeaway: 'Takeaway', delivery: 'Delivery' };
+    return map[type] || type;
+};
 </script>

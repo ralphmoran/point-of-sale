@@ -29,7 +29,7 @@ class LoginController extends Controller
             return back()->withErrors(['email' => 'Invalid credentials.']);
         }
 
-        Auth::login($user);
+        Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
         return redirect()->intended('/dashboard');

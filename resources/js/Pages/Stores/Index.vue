@@ -9,13 +9,13 @@
             </a>
         </div>
 
-        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div class="bg-white border border-gray-200 rounded-xl overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
                     <tr class="border-b border-gray-200 bg-gray-50">
                         <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Name</th>
-                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Address</th>
-                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Phone</th>
+                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">Address</th>
+                        <th class="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">Phone</th>
                         <th class="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Users</th>
                         <th class="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Products</th>
                         <th class="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Sales</th>
@@ -25,8 +25,8 @@
                 <tbody>
                     <tr v-for="store in stores.data" :key="store.id" class="border-b border-gray-100 last:border-0 hover:bg-gray-50">
                         <td class="py-3 px-4 font-medium text-gray-900">{{ store.name }}</td>
-                        <td class="py-3 px-4 text-gray-500">{{ store.address || '—' }}</td>
-                        <td class="py-3 px-4 text-gray-500">{{ store.phone || '—' }}</td>
+                        <td class="py-3 px-4 text-gray-500 hidden md:table-cell">{{ store.address || '—' }}</td>
+                        <td class="py-3 px-4 text-gray-500 hidden md:table-cell">{{ store.phone || '—' }}</td>
                         <td class="py-3 px-4 text-right text-gray-500">{{ store.users_count }}</td>
                         <td class="py-3 px-4 text-right text-gray-500">{{ store.products_count }}</td>
                         <td class="py-3 px-4 text-right text-gray-500">{{ store.sales_count }}</td>
