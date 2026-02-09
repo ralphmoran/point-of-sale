@@ -4,6 +4,10 @@ A full-featured Point of Sale application built with Laravel 11, Vue 3, Inertia.
 
 ![PoS Screen](PoS%20screen%20v2.png)
 
+![Dashboard](Dashboard.png)
+
+![Reports](Reports.png)
+
 ## Features
 
 - **POS Terminal** — product grid with category filters, search, quantity controls (+/-), and cart management
